@@ -62,7 +62,7 @@ namespace Software_Development_Assignment.Controllers
                 var respondent = new Respondent
                 {
                     FirstName = dto.FirstName,
-                    LastName = dto.LastName ?? string.Empty,
+                    LastName = dto.LastName,
                     Email = dto.Email,
                     ContactNumber = dto.ContactNumber,
                     DateOfBirth = dto.DateOfBirth

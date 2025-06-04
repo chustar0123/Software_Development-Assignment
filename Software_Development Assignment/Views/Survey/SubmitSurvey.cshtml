@@ -16,7 +16,7 @@
         }
         @if (ViewData.ModelState.ErrorCount > 0)
         {
-            <div asp-validation-summary="All" class="alert alert-danger p-2 mb-4"></div>
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger p-2 mb-4"></div>
         }
 
         <form asp-action="SubmitSurvey" method="post" class="form-container">
@@ -34,9 +34,10 @@
                     <label asp-for="FirstName" class="form-label">First Name</label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="FirstName" class="form-control narrow-input" required />
+                    <input asp-for="FirstName" type="text" class="form-control narrow-input" />
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
+
             </div>
 
             <div class="row align-items-center mb-3">
@@ -44,7 +45,7 @@
                     <label asp-for="LastName" class="form-label">Last Name</label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="LastName" class="form-control narrow-input" />
+                    <input asp-for="LastName" type="text" class="form-control narrow-input" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
             </div>
@@ -54,7 +55,7 @@
                     <label asp-for="Email" class="form-label">Email</label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="Email" type="email" class="form-control narrow-input" required />
+                    <input asp-for="Email" type="email" class="form-control narrow-input" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
@@ -64,7 +65,7 @@
                     <label asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="DateOfBirth" type="date" class="form-control narrow-input" required />
+                    <input asp-for="DateOfBirth" type="date" class="form-control narrow-input" />
                     <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                 </div>
             </div>
@@ -74,7 +75,7 @@
                     <label asp-for="ContactNumber" class="form-label">Contact Number</label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="ContactNumber" class="form-control narrow-input" required />
+                    <input type="tel" asp-for="ContactNumber" class="form-control narrow-input" />
                     <span asp-validation-for="ContactNumber" class="text-danger"></span>
                 </div>
             </div>
@@ -92,6 +93,7 @@
                         <label class="form-check-label">@food</label>
                     </div>
                 }
+                <span asp-validation-for="FavoriteFoods" class="text-danger d-block"></span>
             </div>
 
             <div class="mb-3">
