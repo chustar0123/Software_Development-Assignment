@@ -1,0 +1,148 @@
+﻿@model Software_Development_Assignment.Models.DTOs.SurveyDTO
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/Survey/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success text-center">@TempData["SuccessMessage"]</div>
+        }
+        @if (ViewData.ModelState.ErrorCount > 0)
+        {
+            <div asp-validation-summary="All" class="alert alert-danger p-2 mb-4"></div>
+        }
+
+        <form asp-action="SubmitSurvey" method="post" class="form-container">
+            @Html.AntiForgeryToken()
+            
+            <div class="d-flex justify-content-end survey-links ms-lg-5 mb-5">
+                <a class="me-3 add-survey" href="#">FILL OUT SURVEY</a>
+                <a class="fill-survey" href="#">VIEW SURVEY RESULT</a>
+            </div>
+
+            <h5>Personal Details:</h5>
+
+            <div class="row align-items-center mb-3">
+                <div class="col-md-3">
+                    <label asp-for="FirstName" class="form-label">First Name</label>
+                </div>
+                <div class="col-md-6">
+                    <input asp-for="FirstName" class="form-control narrow-input" required />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row align-items-center mb-3">
+                <div class="col-md-3">
+                    <label asp-for="LastName" class="form-label">Last Name</label>
+                </div>
+                <div class="col-md-6">
+                    <input asp-for="LastName" class="form-control narrow-input" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row align-items-center mb-3">
+                <div class="col-md-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                </div>
+                <div class="col-md-6">
+                    <input asp-for="Email" type="email" class="form-control narrow-input" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row align-items-center mb-3">
+                <div class="col-md-3">
+                    <label asp-for="DateOfBirth" class="form-label">Date Of Birth</label>
+                </div>
+                <div class="col-md-6">
+                    <input asp-for="DateOfBirth" type="date" class="form-control narrow-input" required />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row align-items-center mb-5">
+                <div class="col-md-3">
+                    <label asp-for="ContactNumber" class="form-label">Contact Number</label>
+                </div>
+                <div class="col-md-6">
+                    <input asp-for="ContactNumber" class="form-control narrow-input" required />
+                    <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="food-options mb-5 mt-5">
+                <p>What is your favourite food? (Select at least one)</p>
+                @foreach (var food in new[] { "Pizza", "Pasta", "Pap and Wors", "Other" })
+                {
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox"
+                               name="FavoriteFoods"
+                               value="@food"
+                               class="form-check-input"
+                        @(Model.FavoriteFoods != null && Model.FavoriteFoods.Contains(food) ? "checked" : "") />
+                        <label class="form-check-label">@food</label>
+                    </div>
+                }
+            </div>
+
+            <div class="mb-3">
+                <p>Please rate your level of agreement on a scale from 1 (Strongly Agree) to 5 (Strongly Disagree):</p>
+            </div>
+
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th></th>
+                            <th class="text-center">1 (Strongly Agree)</th>
+                            <th class="text-center">2 (Agree)</th>
+                            <th class="text-center">3 (Neutral)</th>
+                            <th class="text-center">4 (Disagree)</th>
+                            <th class="text-center">5 (Strongly Disagree)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Ratings.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Model.Ratings[i].Question
+                                    <input type="hidden" name="Ratings[@i].Question" value="@Model.Ratings[i].Question" />
+                                </td>
+                                @for (int j = 1; j <= 5; j++)
+                                {
+                                    <td class="text-center">
+                                        <input type="radio"
+                                               name="Ratings[@i].Rating"
+                                               value="@j"
+                                        @(Model.Ratings[i].Rating == j ? "checked" : "") required />
+                                    </td>
+                                }
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+                <span asp-validation-for="Ratings" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary d-block mx-auto px-4 py-2">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
