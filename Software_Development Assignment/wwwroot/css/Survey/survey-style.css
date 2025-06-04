@@ -1,0 +1,109 @@
+﻿.form-check-input {
+    border-color: deepskyblue !important;
+}
+
+.table-dark {
+    background-color: #5D4037 !important;
+}
+
+.add-survey {
+    text-decoration: none !important;
+    color: black !important;
+}
+
+.fill-survey {
+    text-decoration: none !important;
+    color: black !important;
+}
+
+.form-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-label-group {
+    margin-bottom: 1rem;
+}
+
+.narrow-input {
+    max-width: 300px;
+    border-color: deepskyblue;
+}
+
+.food-options {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+    .food-options p {
+        margin: 0;
+        font-weight: 450;
+    }
+
+    .food-options label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+.survey-links {
+    margin-left: 4rem;
+}
+
+.row {
+    align-content: end;
+    justify-content: end;
+}
+.default-link {
+    color: black;
+    text-decoration: none;
+}
+
+.active-link {
+    color: deepskyblue !important;
+}
+.center-container {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+    .center-container p {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        max-width: 600px;
+    }
+
+    .center-container .value {
+        margin-left: 10rem;
+        flex-shrink: 0;
+        min-width: 100px;
+        text-align: left;
+    }
+.survey-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+    .survey-table thead th {
+        border: 2px solid #000; 
+        padding: 8px;
+        text-align: center;
+    }
+
+    .survey-table tbody td {
+        border: 1px solid deepskyblue;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .survey-table input[type="radio"] {
+        border-color: deepskyblue !important;
+        border: 2px solid deepskyblue !important;
+    }
+
+
+
+

@@ -6,7 +6,6 @@ namespace Software_Development_Assignment.Models.DTOs
     {
         public string Question { get; set; }
 
-        [Range(1, 5, ErrorMessage = "Please select a rating between 1 and 5.")]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
     }
 }

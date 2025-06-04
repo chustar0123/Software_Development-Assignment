@@ -2,7 +2,7 @@
 
 namespace Software_Development_Assignment.Models.DTOs
 {
-    public class SurveyDTO
+    public class SurveyDTO 
     {
         [Required(ErrorMessage = "First name is required.")]
         public string FirstName { get; set; }
@@ -19,15 +19,16 @@ namespace Software_Development_Assignment.Models.DTOs
         public string ContactNumber { get; set; }
 
         [Required(ErrorMessage = "Date of birth is required.")]
-        public DateTime DateOfBirth { get; set; }
+        [AgeRange(5, 120)]
+        public DateTime? DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Please select at least one favorite food.")]
-        [MinLength(1, ErrorMessage = "Please select at least one favorite food.")]
         public List<string> FavoriteFoods { get; set; } = new();
 
-        [Required(ErrorMessage = "Please provide your ratings.")]
-        [MinLength(4, ErrorMessage = "All 4 questions must be rated.")]
+        [AllRatingsSelected(ErrorMessage = "Please rate all questions by selecting one option each.")]
         public List<RatingDTO> Ratings { get; set; } = new();
+
+
 
 
     }

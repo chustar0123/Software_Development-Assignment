@@ -1,0 +1,52 @@
+﻿@model Software_Development_Assignment.Models.DTOs.SurveyResultsDTO
+@{
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Survey</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/Survey/survey-style.css">
+</head>
+<body>
+ 
+    <div class="d-flex justify-content-end survey-links ms-lg-5 mb-5">
+        <a class="me-3 add-survey @(currentAction == "SubmitSurvey" ? "active-link" : "default-link")"
+           asp-controller="Survey" asp-action="SubmitSurvey">FILL OUT SURVEY</a>
+
+        <a class="fill-survey @(currentAction == "SurveyResults" ? "active-link" : "default-link")"
+           asp-controller="Survey" asp-action="SurveyResults">VIEW SURVEY RESULT</a>
+    </div>
+    <div class="center-container">
+        <h3 class="text-center mb-3">Survey Results</h3>
+        <div class="mb-5">
+            <p>Total Number Of Surveys:<span class="value">@Model.TotalSurveys</span></p>
+            <p>Average Age:<span class="value">@Model.AverageAge</span></p>
+            <p>Oldest Person who participated in the survey:<span class="value">@Model.OldestAge</span></p>
+            <p>Youngest Person who participated in the survey:<span class="value">@Model.YoungestAge</span></p>
+        </div>
+
+        <div class="mb-5">
+            <p>Percentage of people who like Pizza:<span class="value">@Model.PercentagePizza%</span></p>
+            <p>Percentage of people who like Pasta: <span class="value">@Model.PercentagePasta%</span></p>
+            <p>Percentage of people who like Pap and Wors: <span class="value">@Model.PercentagePapWors%</span></p>
+        </div>
+
+        <div class="mb-1">
+            <p>People who like to watch movies: <span class="value">@Model.AverageWatchMovies</span></p>
+            <p>People who like to listen to radio: <span class="value">@Model.AverageListenRadio</span></p>
+            <p>People who like to eat out: <span class="value">@Model.AverageEatOut</span></p>
+            <p>People who like to watch TV: <span class="value">@Model.AverageWatchTV</span></p>
+        </div>
+       
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
